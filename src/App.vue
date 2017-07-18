@@ -1,23 +1,30 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view></router-view>
+    <tab></tab>
   </div>
 </template>
 
 <script>
+import Tab from 'components/tab/tab'
 export default {
-  name: 'app'
+  name: 'app',
+  data(){
+    return{
+      title:''
+    }
+  },
+  components:{
+    Tab
+  }
 }
 </script>
 
 <style>
+@import './common/css/reset.css';
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 </style>

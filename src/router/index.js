@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import Standard from 'components/standard/standard'
+import Product from 'components/product/product'
+import Shopping from 'components/shopping/shopping'
+import My from 'components/my/my'
 
 Vue.use(Router)
 
@@ -8,8 +11,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      redirect: '/standard'
+    },
+    {
+      path: '/standard',
+      component: Standard
+    },
+    {
+      path: '/product',
+      component: Product
+    },
+    {
+      path: '/shopping',
+      component: Shopping
+    },
+    {
+      path: '/my',
+      component: My
     }
   ]
 })
