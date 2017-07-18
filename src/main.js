@@ -3,7 +3,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastclick from 'fastclick'
+import axios from 'axios'
 
+Vue.prototype.$ajax = axios
 Vue.config.productionTip = false
 
 fastclick.attach(document.body)
