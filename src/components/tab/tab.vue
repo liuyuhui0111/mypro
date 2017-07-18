@@ -24,15 +24,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 	.tab{
-		height: 50px;
-		line-height: 50px;
+		height: .5rem;
+		line-height: .5rem;
 		background: #333;
 		color: #fff;
 		justify-content: space-around;
 		position: fixed;
 		bottom: 0;
 		width: 100%;
-		font-size: 20px;
 	}
 	.tab .item{
 		display: block;

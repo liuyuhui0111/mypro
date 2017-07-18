@@ -6,10 +6,9 @@
 
 <script>
 export default {
-  name: 'standard',
   data () {
     return {
-      msg: 'standard标准产品'
+      msg: '我的武陵'
     }
   }
 }

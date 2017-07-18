@@ -6,7 +6,6 @@
 
 <script>
 export default {
-  name: 'standard',
   data () {
     return {
       msg: '购物车'

@@ -1,16 +1,20 @@
 <template>
   <div class="standard">
-    {{msg}}
+  	<mheader :isback='isback' :title='title'></mheader>
   </div>
 </template>
 
 <script>
+import Mheader from 'components/mheader/mheader'
 export default {
-  name: 'standard',
   data () {
     return {
-      msg: '标准产品'
+      title: '标准产品',
+      isback:false
     }
+  },
+  components:{
+  	Mheader
   }
 }
 </script>

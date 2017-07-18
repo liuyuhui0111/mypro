@@ -6,7 +6,6 @@
 
 <script>
 export default {
-  name: 'standard',
   data () {
     return {
       msg: '私人定制'
