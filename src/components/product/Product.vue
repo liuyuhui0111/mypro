@@ -1,15 +1,20 @@
 <template>
   <div class="standard">
-    {{msg}}
+    <mheader :isback='isback' :title='title'></mheader>
   </div>
 </template>
 
 <script>
+import Mheader from 'components/mheader/mheader'
 export default {
   data () {
     return {
-      msg: '私人定制'
+      title: '私人定制',
+      isback:false
     }
+  },
+  components:{
+    Mheader
   }
 }
 </script>

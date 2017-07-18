@@ -3,6 +3,9 @@
 	<i v-if='isback' @click='back' class="iconfont icon-xiangyou1 back
 "></i>
 		{{title}}
+	<router-link tag="div" class="custom" to="/custom">
+		<span>客服</span>
+  	</router-link>
 	</div>
 </template>
 
@@ -47,5 +50,12 @@ export default {
 	width: 0.5rem;
 	text-align: center;
 	font-size: 0.3rem;
+}
+.custom{
+	position: absolute;
+	display: block;
+	right: 0;
+	top: 0;
+	width: 1rem;
 }
 </style>

@@ -4,6 +4,7 @@ import Standard from 'components/standard/standard'
 import Product from 'components/product/product'
 import Shopping from 'components/shopping/shopping'
 import My from 'components/my/my'
+import Custom from 'components/custom/custom'
 
 Vue.use(Router)
 
@@ -28,6 +29,10 @@ export default new Router({
     {
       path: '/my',
       component: My
+    },
+    {
+      path: '/custom',
+      component: Custom
     }
   ]
 })

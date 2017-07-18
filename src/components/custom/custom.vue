@@ -1,6 +1,6 @@
 <template>
   <div class="standard">
-    <mheader :isback='isback' :title='title'></mheader>
+  	<mheader :isback='isback' :title='title'></mheader>
   </div>
 </template>
 
@@ -9,12 +9,12 @@ import Mheader from 'components/mheader/mheader'
 export default {
   data () {
     return {
-      title: '购物车',
+      title: '客服',
       isback:true
     }
   },
   components:{
-    Mheader
+  	Mheader
   }
 }
 </script>
