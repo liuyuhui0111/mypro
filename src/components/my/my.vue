@@ -6,7 +6,7 @@
 
 <script>
 import Mheader from 'components/mheader/mheader'
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   data () {
     return {
@@ -16,17 +16,6 @@ export default {
   },
   components:{
   	Mheader
-  },
-  created(){
-    console.log(1)
-
-  axios.get("http://localhost:8080/static/data.json")
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
   }
 }
 </script>

@@ -1,12 +1,20 @@
 {
     "success": true,
-    "data": [{
+    "data": [
+    {
         "id": "00001",
         "href": "javascript:",
-        "src": "common/logo.png"
-    }, {
+        "src": "static/banner/1.jpg"
+    }, 
+    {
         "id": "00002",
         "href": "javascript:",
-        "src": "common/logo.png"
-    }]
+        "src": "static/banner/2.jpg"
+    }, 
+    {
+        "id": "00003",
+        "href": "javascript:",
+        "src": "static/banner/3.jpg"
+    }
+    ]
 }
