@@ -2,17 +2,18 @@
   <div class="standard">
   	<mheader :isback='isback' :title='title'></mheader>
     <div>
-      <div v-for="item in swipers">
-        <a :href="`${item.href}?id=${item.id}`">
+      <swiper>
+        <a v-for="item in swipers" :href="`${item.href}?id=${item.id}`">
           <img :src="item.src" alt="">
         </a>
-      </div>
+      </swiper>
     </div>
   </div>
 </template>
 
 <script>
 import Mheader from 'components/mheader/mheader'
+import Swiper from 'base/swiper/swiper'
 import {getSwiperData} from 'api/standard'
 export default {
   data () {
@@ -23,6 +24,7 @@ export default {
     }
   },
   components:{
+    Swiper,
   	Mheader
   },
   created(){
