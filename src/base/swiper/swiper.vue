@@ -26,7 +26,7 @@
       },
       interval: {
         type: Number,
-        default: 1000
+        default: 3000
       }
     },
     data() {
@@ -47,6 +47,7 @@
       }, 20)
 
       window.addEventListener('resize', () => {
+        console.log(this.slider)
         if (!this.slider) {
           return
         }
@@ -121,6 +122,7 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    min-height: 1px;
   }
   .slider-group{
     display: block;

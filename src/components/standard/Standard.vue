@@ -1,11 +1,11 @@
 <template>
   <div class="standard">
   	<mheader :isback='isback' :title='title'></mheader>
-    <div v-if="swipers.length">
-      <swiper>
+    <div class="swiper-box" v-if="swipers.length">
+      <swiper ref="swiper">
         <div v-for="item in swipers">
         <a :href="item.href">
-          <img :src="item.src" alt="">
+          <img :src="item.src">
         </a>
         </div>
       </swiper>
@@ -34,6 +34,10 @@ export default {
   created(){
     this._getSwiper()
   },
+  watch: {
+    // 如果路由有变化，会再次执行该方法
+    "$route": "fetchDate"
+  },
   methods:{
     _getSwiper(){
       getSwiperData().then((res)=>{
@@ -41,6 +45,9 @@ export default {
        }).catch((err)=>{
           console.log(err)
        })
+    },
+    fetchDate(){
+      this.$refs.swiper.refresh()
     }
   }
 }
@@ -48,5 +55,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .swiper-box{
+    width: 100%;
+    min-height: 1px;
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="standard">
+  <div class="product">
     <mheader :isback='isback' :title='title'></mheader>
   </div>
 </template>

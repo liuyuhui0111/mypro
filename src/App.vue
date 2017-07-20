@@ -9,7 +9,6 @@
 
 <script>
 import Tab from 'components/tab/tab'
-import 'common/js/reset.js'
 export default {
   name: 'app',
   data(){
