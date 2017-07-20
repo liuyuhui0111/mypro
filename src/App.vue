@@ -1,6 +1,8 @@
 <template>
   <div id="app">
+  <keep-alive>
     <router-view></router-view>
+  </keep-alive>
     <tab></tab>
   </div>
 </template>
@@ -28,5 +30,7 @@ export default {
   width: 100%;
   overflow-x: hidden;
   font-size: .2rem;
+  padding-bottom: 0.5rem;
+  box-sizing:border-box;
 }
 </style>
