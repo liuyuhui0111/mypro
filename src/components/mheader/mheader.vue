@@ -3,8 +3,8 @@
 	<i v-if='isback' @click='back' class="iconfont icon-xiangyou1 back
 "></i>
 		{{title}}
-	<router-link tag="div" class="custom" to="/custom">
-		<span>客服</span>
+	<router-link tag="div" class="custom" to="/my/custom">
+		<span><i class="iconfont icon-kefu"></i>客服</span>
   	</router-link>
 	</div>
 </template>
@@ -57,5 +57,9 @@ export default {
 	right: 0;
 	top: 0;
 	width: 1rem;
+}
+.icon-kefu{
+	font-size: 0.2rem;
+	margin-right: 0.1rem;
 }
 </style>

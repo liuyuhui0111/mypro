@@ -27,9 +27,9 @@ export default {
 #app {
   height: 100%;
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   font-size: .2rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.8rem;
   box-sizing:border-box;
 }
 </style>

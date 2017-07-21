@@ -1,0 +1,171 @@
+{
+    "success": true,
+    "data": [
+    {
+        "id": "00001",
+        "href": "javascript:",
+        "src": "static/res/1.jpg",
+        "name":"武陵酒509ml",
+        "vol":"53",
+        "num":1,
+        "cells":100,
+        "boxcolor":[
+            {
+                "box-id":"0",
+                "src":"static/res/2.png",
+                "name":"红盒子"
+            },
+            {
+                "box-id":"1",
+                "src":"static/res/2.png",
+                "name":"黑盒子"
+            }
+        ],
+        "price":"379.00"
+    },
+    {
+        "id": "00001",
+        "href": "javascript:",
+        "src": "static/res/1.jpg",
+        "name":"武陵酒509ml",
+        "vol":"53",
+        "num":1,
+        "cells":100,
+        "boxcolor":[
+            {
+                "box-id":"0",
+                "src":"static/res/2.png",
+                "name":"红盒子"
+            },
+            {
+                "box-id":"1",
+                "src":"static/res/2.png",
+                "name":"黑盒子"
+            }
+        ],
+        "price":"379.00"
+    },
+    {
+        "id": "00001",
+        "href": "javascript:",
+        "src": "static/res/1.jpg",
+        "name":"武陵酒509ml",
+        "vol":"53",
+        "num":1,
+        "cells":100,
+        "boxcolor":[
+            {
+                "box-id":"0",
+                "src":"static/res/2.png",
+                "name":"红盒子"
+            },
+            {
+                "box-id":"1",
+                "src":"static/res/2.png",
+                "name":"黑盒子"
+            }
+        ],
+        "price":"379.00"
+    },
+    {
+        "id": "00001",
+        "href": "javascript:",
+        "src": "static/res/1.jpg",
+        "name":"武陵酒509ml",
+        "vol":"53",
+        "num":1,
+        "cells":100,
+        "boxcolor":[
+            {
+                "box-id":"0",
+                "src":"static/res/2.png",
+                "name":"红盒子"
+            },
+            {
+                "box-id":"1",
+                "src":"static/res/2.png",
+                "name":"黑盒子"
+            }
+        ],
+        "price":"379.00"
+    },
+    {
+        "id": "00001",
+        "href": "javascript:",
+        "src": "static/res/1.jpg",
+        "name":"武陵酒509ml",
+        "vol":"53",
+        "num":1,
+        "cells":100,
+        "boxcolor":[
+            {
+                "box-id":"0",
+                "src":"static/res/2.png",
+                "name":"红盒子"
+            },
+            {
+                "box-id":"1",
+                "src":"static/res/2.png",
+                "name":"黑盒子"
+            }
+        ],
+        "price":"379.00"
+    }, 
+    {
+        "id": "00002",
+        "href": "javascript:",
+        "src": "static/res/1.jpg",
+        "name":"冰玉509ml",
+        "vol":"53",
+        "num":1,
+        "cells":1000,
+        "boxcolor":[
+            {
+                "box-id":"0",
+                "src":"static/res/2.png",
+                "name":"红盒子"
+            },
+            {
+                "box-id":"1",
+                "src":"static/res/2.png",
+                "name":"黑盒子"
+            }
+        ],
+        "price":"379.00"
+    }, 
+   {
+        "id": "00003",
+        "href": "javascript:",
+        "src": "static/res/1.jpg",
+        "name":"武陵酒750ml",
+        "vol":"53",
+        "num":1,
+        "cells":100,
+        "boxcolor":[
+            
+        ],
+        "price":"379.00"
+    },{
+        "id": "00004",
+        "href": "javascript:",
+        "src": "static/res/1.jpg",
+        "name":"武陵酒1000ml",
+        "vol":"53",
+        "num":1,
+        "cells":100,
+        "boxcolor":[
+            {
+                "box-id":"0",
+                "src":"static/res/2.png",
+                "name":"红盒子"
+            },
+            {
+                "box-id":"1",
+                "src":"static/res/2.png",
+                "name":"黑盒子"
+            }
+        ],
+        "price":"379.00"
+    }
+    ]
+}

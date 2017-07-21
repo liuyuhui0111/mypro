@@ -27,6 +27,10 @@
       interval: {
         type: Number,
         default: 3000
+      },
+      propsPath:{
+        type:String,
+        default:'/standard'
       }
     },
     data() {
@@ -37,22 +41,27 @@
     },
     mounted() {
       this.$nextTick(() => {
-        this._setSliderWidth()
-        this._initDots()
-        this._initSlider()
+          this._setSliderWidth()
+          this._initDots()
+          this._initSlider()
 
-        if (this.autoPlay) {
-          this._play()
-        }
-      }, 20)
+          if (this.autoPlay) {
+            this._play()
+          }
+      
 
-      window.addEventListener('resize', () => {
-        console.log(this.slider)
-        if (!this.slider) {
-          return
-        }
-        this._setSliderWidth(true)
-        this.slider.refresh()
+        window.addEventListener('resize', () => {
+            console.log(this.$route.path != this.propsPath)
+            if (!this.slider || this.$route.path != this.propsPath) {
+              return
+            }
+            clearTimeout(this.timer2)
+            this.timer2 = setTimeout(()=>{
+              console.log(this.$route.path)
+              this._setSliderWidth(true)
+              this.slider.refresh()
+            },60)
+        })
       })
     },
     destroyed() {
@@ -84,6 +93,7 @@
           snap: true,
           snapLoop: this.loop,
           snapThreshold: 0.3,
+          click: true,
           snapSpeed: 400
         })
 
@@ -135,6 +145,7 @@
   .slider-group .slider-item a{
     display: block;
     width: 100%;
+    overflow: hidden;
   }
   .slider-group .slider-item img{
     display: block;

@@ -1,7 +1,9 @@
 <template>
   <div class="my">
   	<mheader :isback='isback' :title='title'></mheader>
+    <router-view></router-view> 
   </div>
+
 </template>
 
 <script>

@@ -28,11 +28,13 @@ export default new Router({
     },
     {
       path: '/my',
-      component: My
-    },
-    {
-      path: '/custom',
-      component: Custom
+      component: My,
+      children:[
+        {
+          path:'custom',
+          component:Custom
+        }
+      ]
     }
   ]
 })
