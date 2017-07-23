@@ -24,7 +24,7 @@
         "price":"379.00"
     },
     {
-        "id": "00001",
+        "id": "00002",
         "href": "javascript:",
         "src": "static/res/1.jpg",
         "name":"武陵酒509ml",
@@ -46,7 +46,7 @@
         "price":"379.00"
     },
     {
-        "id": "00001",
+        "id": "00003",
         "href": "javascript:",
         "src": "static/res/1.jpg",
         "name":"武陵酒509ml",
@@ -68,7 +68,7 @@
         "price":"379.00"
     },
     {
-        "id": "00001",
+        "id": "00004",
         "href": "javascript:",
         "src": "static/res/1.jpg",
         "name":"武陵酒509ml",
@@ -90,7 +90,7 @@
         "price":"379.00"
     },
     {
-        "id": "00001",
+        "id": "00005",
         "href": "javascript:",
         "src": "static/res/1.jpg",
         "name":"武陵酒509ml",
@@ -112,7 +112,7 @@
         "price":"379.00"
     }, 
     {
-        "id": "00002",
+        "id": "00006",
         "href": "javascript:",
         "src": "static/res/1.jpg",
         "name":"冰玉509ml",
@@ -134,7 +134,7 @@
         "price":"379.00"
     }, 
    {
-        "id": "00003",
+        "id": "00007",
         "href": "javascript:",
         "src": "static/res/1.jpg",
         "name":"武陵酒750ml",
@@ -146,7 +146,7 @@
         ],
         "price":"379.00"
     },{
-        "id": "00004",
+        "id": "00008",
         "href": "javascript:",
         "src": "static/res/1.jpg",
         "name":"武陵酒1000ml",

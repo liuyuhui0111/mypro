@@ -15,7 +15,7 @@
       </div>
       <div class="shop-list">
         <div v-for="item in shops" class="fbox">
-          <a class="lbox" :href="item.href">
+          <a @click="showDetail(item)" class="lbox" :href="item.href">
             <img v-lazy="item.src">
           </a>
           <div class="rbox">
@@ -46,6 +46,8 @@
       </div>
       </div>
     </scroll>
+
+    <router-view></router-view>
   </div>
 </template>
 
@@ -55,6 +57,7 @@ import Swiper from 'base/swiper/swiper'
 import Loading from 'base/loading/loading'
 import {getSwiperData,getShopList} from 'api/standard'
 import Scroll from 'base/scroll/scroll'
+import {mapMutations} from 'vuex'
 export default {
   data () {
     return {
@@ -84,7 +87,6 @@ export default {
     },
     _getShopList(){
       getShopList().then((res)=>{
-        console.log(res.data)
         this.shops = res.data
       }).catch((err)=>{
         console.log(err)
@@ -95,7 +97,16 @@ export default {
           this.checkloaded = true
           this.$refs.scroll.refresh()
         }
-    }
+    },
+    showDetail(item){
+      this.$router.push({
+        path:`/standard/${item.id}`
+      })
+      this.setShopid(item.id)
+    },
+    ...mapMutations({
+        setShopid: 'SET_SHOPID'
+      })
   }
 }
 </script>

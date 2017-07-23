@@ -5,6 +5,7 @@ import Product from 'components/product/product'
 import Shopping from 'components/shopping/shopping'
 import My from 'components/my/my'
 import Custom from 'components/custom/custom'
+import StandardDetail from 'components/detail/standardDetail'
 
 Vue.use(Router)
 
@@ -16,7 +17,11 @@ export default new Router({
     },
     {
       path: '/standard',
-      component: Standard
+      component: Standard,
+      children:[{
+        path:':id',
+        component:StandardDetail
+      }]
     },
     {
       path: '/product',
