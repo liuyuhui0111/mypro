@@ -2,7 +2,7 @@
   <div class="colorbox">
     <i @click='back' class="iconfont icon-xiangyou1 back
 "></i>
-
+  <div class="scroll-box">
   <scroll ref="scroll" class="scroll" :data="colorbox">
     <div>
       <div v-if="colorbox.length>0" class="imgbox">
@@ -10,7 +10,7 @@
       </div>
     </div>
   </scroll>
-  
+  </div>
   </div>
 </template>
 
@@ -54,16 +54,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.scroll-box,
 .colorbox{
   position: fixed;
-  top: 0;
-  bottom:0;
+  top: 0.5rem;
+  bottom:0.8rem;
   left: 0;
   width: 100%;
   height: 100%;
   box-sizing:border-box;
   z-index: 11;
-  padding: 0.5rem 0 0 0;
+}
+.scroll-box{
   overflow: hidden;
 }
 .scroll{
@@ -86,7 +88,7 @@ export default {
 .back{
   position: absolute;
   left: 0;
-  top: 0;
+  top: -0.5rem;
   color: #fff;
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);

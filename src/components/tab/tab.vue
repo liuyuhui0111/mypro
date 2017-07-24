@@ -11,7 +11,7 @@
   	<router-link tag="div" class="item" to="/shopping">
   	<i class="iconfont icon-gouwuche"></i><br>
 		<span>购物车</span>
-		<em>{{setNum}}</em>
+		<em v-if="shopnum>0" class="shopnum">{{setNum}}</em>
   	</router-link>
   	<router-link tag="div" class="item" to="/my">
   	<i class="iconfont icon-wode"></i><br>
@@ -26,7 +26,7 @@ import {mapMutations} from 'vuex'
 export default {
 	data(){
 		return {
-			shopnum:1
+			shopnum:0
 		}
 	},
  	created(){
@@ -39,7 +39,10 @@ export default {
  				this.setShopCartNum = res.shopCartNum
  				this.shopnum = res.shopCartNum
  			})
- 		}
+ 		},
+ 		...mapMutations({
+ 			setShopCartNum:'SET_SHOPCARTNUM'
+ 		})
  	},
  	computed:{
  		setNum(){
@@ -49,10 +52,8 @@ export default {
  				return this.shopnum
  			}
  		}
- 	},
- 	...mapMutations({
- 		setShopCartNum:'SET_SHOPCARTNUM'
- 	})
+ 	}
+ 	
 
 }
 </script>
@@ -75,11 +76,32 @@ export default {
 		display: block;
 		width: 25%;
 		text-align: center;
+		position: relative;
 	}
 	.router-link-active{
 		background: #e83c3a;
 	}
 	.iconfont{
 		font-size: 0.4rem;
+	}
+	.shopnum{
+		position: absolute;
+		display: block;
+		width: 0.3rem;
+		height: 0.3rem;
+		line-height: 0.3rem;
+		background: #e83c3a;
+		color: #fff;
+		text-align: center;
+		font-size: 0.16rem;
+		right: 0.4rem;
+		top: 0;
+		border-radius: 0.3rem;
+		font-style: normal;
+		font-weight: bold;
+	}
+	.router-link-active .shopnum{
+		background: #333;
+		color: #fff;
 	}
 </style>

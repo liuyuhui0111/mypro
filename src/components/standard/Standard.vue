@@ -138,14 +138,12 @@ export default {
 <style scoped>
 .standard{
   position: fixed;
-  top: 0;
-  bottom:0;
+  top: 0.5rem;
+  bottom:0.8rem;
   left: 0;
   width: 100%;
-  height: 100%;
   overflow: hidden;
   box-sizing:border-box;
-  padding: 0.5rem 0 0.8rem 0;
 }
   .swiper-box{
     width: 100%;
