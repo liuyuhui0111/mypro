@@ -1,17 +1,16 @@
 <template>
   <div class="detail">
-  	<mheader :isback='isback' :title='title'></mheader>
+    <i @click='back' class="iconfont icon-xiangyou1 back
+"></i>
   </div>
 </template>
 
 <script>
-import Mheader from 'components/mheader/mheader'
 import {mapGetters} from 'vuex'
 export default {
   data () {
     return {
-      title: '标准产品详情',
-      isback:true
+      
     }
   },
   computed:{
@@ -24,8 +23,10 @@ export default {
       console.log(this.shopid)
     })
   },
-  components:{
-  	Mheader
+  methods:{
+    back(){
+      this.$router.back()
+    }
   }
 }
 </script>
@@ -34,11 +35,26 @@ export default {
 <style scoped>
 .detail{
   position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
+  top: 0.5rem;
+  bottom:0.8rem;
   left: 0;
-  z-index: 100;
+  width: 100%;
+  box-sizing:border-box;
   background: #fff;
+  z-index: 11;
+}
+.back{
+  position: absolute;
+  left: 0;
+  top: -0.5rem;
+  color: #fff;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  display: block;
+  width: 0.5rem;
+  text-align: center;
+  font-size: 0.3rem;
 }
 </style>

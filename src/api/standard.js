@@ -6,7 +6,7 @@ export function getSwiperData(){
 	.then((res)=>{
 		return Promise.resolve(res.data)
 	})
-	.catch(err=>{
+	.catch((err)=>{
 		return Promise.reject(err)
 	})
 }
@@ -17,7 +17,7 @@ export function getShopList(){
 	.then((res)=>{
 		return Promise.resolve(res.data)
 	})
-	.catch(err=>{
+	.catch((err)=>{
 		return Promise.reject(err)
 	})
 }

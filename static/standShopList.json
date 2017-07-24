@@ -9,6 +9,7 @@
         "vol":"53",
         "num":1,
         "cells":100,
+        "curbox":"1",
         "boxcolor":[
             {
                 "box-id":"0",
@@ -31,6 +32,7 @@
         "vol":"53",
         "num":1,
         "cells":100,
+        "curbox":"1",
         "boxcolor":[
             {
                 "box-id":"0",
@@ -53,6 +55,7 @@
         "vol":"53",
         "num":1,
         "cells":100,
+        "curbox":"1",
         "boxcolor":[
             {
                 "box-id":"0",
@@ -75,6 +78,7 @@
         "vol":"53",
         "num":1,
         "cells":100,
+        "curbox":"1",
         "boxcolor":[
             {
                 "box-id":"0",
@@ -97,6 +101,7 @@
         "vol":"53",
         "num":1,
         "cells":100,
+        "curbox":"1",
         "boxcolor":[
             {
                 "box-id":"0",
@@ -119,15 +124,16 @@
         "vol":"53",
         "num":1,
         "cells":1000,
+        "curbox":"1",
         "boxcolor":[
             {
                 "box-id":"0",
-                "src":"static/res/2.png",
+                "src":"static/res/box0.jpg",
                 "name":"红盒子"
             },
             {
                 "box-id":"1",
-                "src":"static/res/2.png",
+                "src":"static/res/box1.jpg",
                 "name":"黑盒子"
             }
         ],
@@ -141,6 +147,7 @@
         "vol":"53",
         "num":1,
         "cells":100,
+        "curbox":"-1",
         "boxcolor":[
             
         ],
@@ -153,15 +160,16 @@
         "vol":"53",
         "num":1,
         "cells":100,
+        "curbox":"0",
         "boxcolor":[
             {
                 "box-id":"0",
-                "src":"static/res/2.png",
+                "src":"static/res/box0.jpg",
                 "name":"红盒子"
             },
             {
                 "box-id":"1",
-                "src":"static/res/2.png",
+                "src":"static/res/box1.jpg",
                 "name":"黑盒子"
             }
         ],

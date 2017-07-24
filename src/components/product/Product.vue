@@ -1,21 +1,10 @@
 <template>
   <div class="product">
-    <mheader :isback='isback' :title='title'></mheader>
   </div>
 </template>
 
 <script>
-import Mheader from 'components/mheader/mheader'
 export default {
-  data () {
-    return {
-      title: '私人定制',
-      isback:false
-    }
-  },
-  components:{
-    Mheader
-  }
 }
 </script>
 

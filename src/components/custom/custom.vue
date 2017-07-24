@@ -1,21 +1,11 @@
 <template>
   <div class="custom">
-  	<mheader :isback='isback' :title='title'></mheader>
   </div>
 </template>
 
 <script>
 import Mheader from 'components/mheader/mheader'
 export default {
-  data () {
-    return {
-      title: '客服',
-      isback:true
-    }
-  },
-  components:{
-  	Mheader
-  }
 }
 </script>
 
@@ -23,9 +13,13 @@ export default {
 <style scoped>
 .custom{
   position: fixed;
+  top: 0;
+  bottom:0;
+  left: 0;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
+  overflow: hidden;
+  box-sizing:border-box;
+  padding: 0.5rem 0 0.8rem 0;
 }
 </style>

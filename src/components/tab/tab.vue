@@ -11,6 +11,7 @@
   	<router-link tag="div" class="item" to="/shopping">
   	<i class="iconfont icon-gouwuche"></i><br>
 		<span>购物车</span>
+		<em>{{setNum}}</em>
   	</router-link>
   	<router-link tag="div" class="item" to="/my">
   	<i class="iconfont icon-wode"></i><br>
@@ -20,8 +21,39 @@
 </template>
 
 <script>
+import {getShopCartNum} from 'api/shopcart'
+import {mapMutations} from 'vuex'
 export default {
- 
+	data(){
+		return {
+			shopnum:1
+		}
+	},
+ 	created(){
+ 		this._getShopCartNum()
+ 	},
+ 	methods:{
+ 		_getShopCartNum(){
+ 			// let me = this
+ 			getShopCartNum().then((res)=>{
+ 				this.setShopCartNum = res.shopCartNum
+ 				this.shopnum = res.shopCartNum
+ 			})
+ 		}
+ 	},
+ 	computed:{
+ 		setNum(){
+ 			if(this.shopnum > 99){
+ 				return '99+'
+ 			}else{
+ 				return this.shopnum
+ 			}
+ 		}
+ 	},
+ 	...mapMutations({
+ 		setShopCartNum:'SET_SHOPCARTNUM'
+ 	})
+
 }
 </script>
 

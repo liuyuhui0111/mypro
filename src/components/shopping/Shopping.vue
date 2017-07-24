@@ -1,21 +1,10 @@
 <template>
   <div class="shopping">
-    <mheader :isback='isback' :title='title'></mheader>
   </div>
 </template>
 
 <script>
-import Mheader from 'components/mheader/mheader'
 export default {
-  data () {
-    return {
-      title: '购物车',
-      isback:true
-    }
-  },
-  components:{
-    Mheader
-  }
 }
 </script>
 
