@@ -22,7 +22,7 @@ export default new Router({
       component: Standard,
       children:[
         {
-          name:'标准产品详情',
+          name:'商品详情',
           path:':id',
           component:StandardDetail
         }

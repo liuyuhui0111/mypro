@@ -1,5 +1,5 @@
 <template>
-	<div class="mheader">
+	<div v-show="title != ''" class="mheader">
 		{{title}}
 	<router-link tag="div" class="custom" to="/my/custom">
 		<span><i class="iconfont icon-kefu"></i>客服</span>

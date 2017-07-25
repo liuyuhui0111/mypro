@@ -1,20 +1,16 @@
 <template>
   <div id="app">
   <mheader></mheader>
-
   <keep-alive>
     <router-view></router-view>
   </keep-alive>
-    <tab></tab>
   </div>
 </template>
 
 <script>
-import Tab from 'components/tab/tab'
 import Mheader from 'components/mheader/mheader'
 export default {
   components:{
-    Tab,
     Mheader
   }
 }

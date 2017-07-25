@@ -1,8 +1,8 @@
 
 const state = {
-  shopid: "",
   colorbox:[],
-  shopCartNum:0
+  shopCartNum:0,
+  detailShop:{}
 }
 
 export default state

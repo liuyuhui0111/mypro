@@ -49,18 +49,12 @@
             this._play()
           }
       
-
         window.addEventListener('resize', () => {
-            console.log(this.$route.path != this.propsPath)
             if (!this.slider || this.$route.path != this.propsPath) {
               return
             }
-            clearTimeout(this.timer2)
-            this.timer2 = setTimeout(()=>{
-              console.log(this.$route.path)
-              this._setSliderWidth(true)
-              this.slider.refresh()
-            },60)
+            this._setSliderWidth(true)
+            this.slider.refresh()
         })
       })
     },
@@ -73,6 +67,7 @@
 
         let width = 0
         let sliderWidth = this.$refs.slider.clientWidth
+        this.$refs.slider.width = sliderWidth
         for (let i = 0; i < this.children.length; i++) {
           let child = this.children[i]
           addClass(child, 'slider-item')

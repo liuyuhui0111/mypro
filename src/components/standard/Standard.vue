@@ -22,12 +22,12 @@
               <span>{{item.name}}</span>
               <span>{{item.vol}}%Vol</span>
             </div>
-            <div class="num" @touchstart.stop>
+            <div class="num">
               <span class="cr_c">数量</span>
-              <div class="numbtns">
-                <div @click="delNum(item)" class="iconfont icon-jianhao"></div>
-                <input @focus="curInpIndex=index" ref="inp" v-model.number="item.num" type="text">
-                <div @click="addNum(item)" class="iconfont icon-jiahao1"></div>
+              <div class="numbtns" @touchstart.stop>
+                <div @touchstart="delNum(item)" class="iconfont icon-jianhao"></div>
+                <input @focus="curInpIndex=index" @change="checkNum(item)" ref="inp" v-model.number="item.num" type="text">
+                <div @touchstart="addNum(item)" class="iconfont icon-jiahao1"></div>
               </div>
             </div>
             <div class="price">
@@ -36,14 +36,14 @@
             </div>
             <div v-if="item.boxcolor.length>0" class="box-color">
               <span class="cr_c">礼盒颜色</span>
-              <div @click="item.curbox=item.curbox==='0' ? '1' : '0'" class="btn-color" :class="{on:item.curbox === '0'}">
+              <div @touchstart.stop="item.curbox=item.curbox==='0' ? '1' : '0'" class="btn-color" :class="{on:item.curbox === '0'}">
                 <span class="circle"></span>
               </div>
-              <span @click="showBox(item)" class="iconfont icon-wenhao"></span>
+              <span @click.stop="showBox(item)" class="iconfont icon-wenhao"></span>
             </div>
             <div class="btns">
-              <div class="add-shop">加入购物车</div>
-              <div class="go-buy">立即购买</div>
+              <div @touchstart="_addShop(item)" class="add-shop">加入购物车</div>
+              <div @touchstart.stop="_goBuy(item)" class="go-buy">立即购买</div>
             </div>
 
           </div>
@@ -52,16 +52,18 @@
      
       </div>
     </scroll>
-    <router-view></router-view>
+    <tab></tab>
+    <router-view class="detail-box"></router-view>
   </div>
 </template>
 
 <script>
+import Tab from 'components/tab/tab'
 import Swiper from 'base/swiper/swiper'
 import Loading from 'base/loading/loading'
-import {getSwiperData,getShopList} from 'api/standard'
+import {getSwiperData,getShopList,addShop} from 'api/standard'
 import Scroll from 'base/scroll/scroll'
-import {mapMutations} from 'vuex'
+import {mapMutations,mapActions} from 'vuex'
 export default {
   data () {
     return {
@@ -69,14 +71,17 @@ export default {
       isback:false,
       swipers:[],
       shops:[],
-      curInpIndex:0
+      curInpIndex:0,
+      isCanSub:true
     }
   },
   components:{
     Swiper,
   	Scroll,
+    Tab,
     Loading
   },
+  
   created(){
     this._getSwiper()
     this._getShopList()
@@ -96,6 +101,11 @@ export default {
         console.log(err)
       })
     },
+    checkNum(item){
+      if(item.num<1){
+        item.num = 1
+      }
+    },
     loadImage(){
        if (!this.checkloaded) {
           this.checkloaded = true
@@ -106,7 +116,7 @@ export default {
       this.$router.push({
         path:`/standard/${item.id}`
       })
-      this.setShopid(item.id)
+      this.setDetailShop(item)
     },
     showBox(item){
       this.$router.push({
@@ -123,13 +133,43 @@ export default {
         item.num = 1;
       }
     },
+    _addShop(item){
+      if(!this.isCanSub) return
+      let data = {
+        id:item.id,
+        boxid:item.curbox,
+        num:item.num
+      }
+      this.isCanSub = false
+      addShop(data).then((res)=>{
+        this.isCanSub = true
+        if(res.success){
+          console.log(data.num)
+          this.setShopCartNum(data.num)
+        }
+      })
+    },
+    _goBuy(item){
+      if(!this.isCanSub) return
+      let data = {
+        id:item.id,
+        boxid:item.curbox,
+        num:item.num
+      }
+      console.log(data)
+    },
     blurInp(){
       this.$refs.inp[this.curInpIndex].blur()
     },
     ...mapMutations({
-        setShopid: 'SET_SHOPID',
         setColorbox: 'SET_COLORBOX'
-      })
+    }),
+     ...mapMutations({
+        setDetailShop: 'SET_DRTAILSHOP'
+    }),
+    ...mapActions([
+        'setShopCartNum'
+    ])
   }
 }
 </script>
@@ -139,7 +179,8 @@ export default {
 .standard{
   position: fixed;
   top: 0.5rem;
-  bottom:0.8rem;
+  padding-bottom:0.8rem;
+  bottom: 0;
   left: 0;
   width: 100%;
   overflow: hidden;
@@ -198,7 +239,7 @@ export default {
   .btn-color.on:after{
     content: "红色";
   }
-  .fbox{
+  .shop-list .fbox{
     justify-content: space-between;
     padding: 0.2rem;
     align-items: center;
@@ -206,16 +247,16 @@ export default {
     background: #fff;
     margin: 0.1rem 0;
   }
-  .fbox .lbox{
+  .shop-list .fbox .lbox{
     display: block;
     box-sizing:border-box;
     width: 40%;
     padding-right:0.1rem;
   }
-  .fbox .lbox img{
+  .shop-list .fbox .lbox img{
     width: 100%;
   }
-  .fbox .rbox{
+  .shop-list .fbox .rbox{
     display: block;
     width: 60%;
     font-size: 0.2rem;

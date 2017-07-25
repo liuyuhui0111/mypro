@@ -108,7 +108,27 @@ scale：表示两个手指之间的距离情况，向内收缩会缩短距离，
 		index.js 实例化Vuex
 		main.js 引入Vuex
 
-
+		vue actions文件里创建方法
+		export const setColor = function ({commit,state},{color,index}){
+			if(state.colors[index] == "#ccc"){
+				return
+			}else{
+				commit('types.SET_COLOR,color[index]')
+			}
+		}
+		<!-- 模版里调用 -->
+		methods:{
+			setColorTo(){
+				color="#fff"
+				index=2
+				this.setColor({color,index})
+			},
+			...mapActions([
+	        'setColor',
+	        'otherFn'
+	      	])
+		}
+		
 	</pre>
 
 	<h2>mixins</h2>

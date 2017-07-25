@@ -13,14 +13,12 @@ export default {
       
     }
   },
-  computed:{
-    ...mapGetters([
-        'shopid'
-    ])
+  created(){
+    console.log(this.$route.params.id)
   },
   mounted(){
     this.$nextTick(()=>{
-      console.log(this.shopid)
+      console.log(this.$route.params.id)
     })
   },
   methods:{
@@ -36,11 +34,11 @@ export default {
 .detail{
   position: fixed;
   top: 0.5rem;
-  bottom:0.8rem;
+  bottom:0;
   left: 0;
   width: 100%;
   box-sizing:border-box;
-  background: #fff;
+  background: #e5e5e5;
   z-index: 11;
 }
 .back{
@@ -54,6 +52,8 @@ export default {
   transform: rotate(180deg);
   display: block;
   width: 0.5rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
   text-align: center;
   font-size: 0.3rem;
 }

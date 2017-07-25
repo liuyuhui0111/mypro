@@ -54,11 +54,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.scroll-box,
 .colorbox{
   position: fixed;
   top: 0.5rem;
-  bottom:0.8rem;
+  bottom:0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -66,6 +65,9 @@ export default {
   z-index: 11;
 }
 .scroll-box{
+  position: fixed;
+  top: 0.5rem;
+  bottom: 0;
   overflow: hidden;
 }
 .scroll{
