@@ -164,11 +164,9 @@ export default {
     ...mapMutations({
         setColorbox: 'SET_COLORBOX'
     }),
-     ...mapMutations({
-        setDetailShop: 'SET_DRTAILSHOP'
-    }),
     ...mapActions([
-        'setShopCartNum'
+        'setShopCartNum',
+        'setDetailShop',
     ])
   }
 }

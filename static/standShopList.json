@@ -22,7 +22,8 @@
                 "name":"黑盒子"
             }
         ],
-        "price":"379.00"
+        "price":"379.00",
+        "fhmes":"发货地：武陵酒厂，3-7个工作日送达"
     },
     {
         "id": "sp000002",
@@ -45,7 +46,8 @@
                 "name":"黑盒子"
             }
         ],
-        "price":"379.00"
+        "price":"379.00",
+        "fhmes":"发货地：武陵酒厂，3-7个工作日送达"
     },
     {
         "id": "sp000003",
@@ -68,112 +70,8 @@
                 "name":"黑盒子"
             }
         ],
-        "price":"379.00"
-    },
-    {
-        "id": "sp000004",
-        "href": "javascript:",
-        "src": "static/res/1.jpg",
-        "name":"武陵酒509ml",
-        "vol":"53",
-        "num":1,
-        "cells":100,
-        "curbox":"1",
-        "boxcolor":[
-            {
-                "box-id":"0",
-                "src":"static/res/2.png",
-                "name":"红盒子"
-            },
-            {
-                "box-id":"1",
-                "src":"static/res/2.png",
-                "name":"黑盒子"
-            }
-        ],
-        "price":"379.00"
-    },
-    {
-        "id": "sp000005",
-        "href": "javascript:",
-        "src": "static/res/1.jpg",
-        "name":"武陵酒509ml",
-        "vol":"53",
-        "num":1,
-        "cells":100,
-        "curbox":"1",
-        "boxcolor":[
-            {
-                "box-id":"0",
-                "src":"static/res/2.png",
-                "name":"红盒子"
-            },
-            {
-                "box-id":"1",
-                "src":"static/res/2.png",
-                "name":"黑盒子"
-            }
-        ],
-        "price":"379.00"
-    }, 
-    {
-        "id": "sp000006",
-        "href": "javascript:",
-        "src": "static/res/1.jpg",
-        "name":"冰玉509ml",
-        "vol":"53",
-        "num":1,
-        "cells":1000,
-        "curbox":"1",
-        "boxcolor":[
-            {
-                "box-id":"0",
-                "src":"static/res/box0.jpg",
-                "name":"红盒子"
-            },
-            {
-                "box-id":"1",
-                "src":"static/res/box1.jpg",
-                "name":"黑盒子"
-            }
-        ],
-        "price":"379.00"
-    }, 
-   {
-        "id": "sp000007",
-        "href": "javascript:",
-        "src": "static/res/1.jpg",
-        "name":"武陵酒750ml",
-        "vol":"53",
-        "num":1,
-        "cells":100,
-        "curbox":"-1",
-        "boxcolor":[
-            
-        ],
-        "price":"379.00"
-    },{
-        "id": "sp000008",
-        "href": "javascript:",
-        "src": "static/res/1.jpg",
-        "name":"武陵酒1000ml",
-        "vol":"53",
-        "num":1,
-        "cells":100,
-        "curbox":"0",
-        "boxcolor":[
-            {
-                "box-id":"0",
-                "src":"static/res/box0.jpg",
-                "name":"红盒子"
-            },
-            {
-                "box-id":"1",
-                "src":"static/res/box1.jpg",
-                "name":"黑盒子"
-            }
-        ],
-        "price":"379.00"
+        "price":"379.00",
+        "fhmes":"发货地：武陵酒厂，3-7个工作日送达"
     }
     ]
 }
