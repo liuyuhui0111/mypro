@@ -69,6 +69,7 @@ export default {
   top: 0.5rem;
   bottom: 0;
   overflow: hidden;
+  width: 100%;
 }
 .scroll{
   height: 100%;

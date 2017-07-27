@@ -2,7 +2,7 @@
   <div class="detail">
     <i @click='back' class="iconfont icon-xiangyou1 back
 "></i>
-    <scroll @scrollToEnd="scrollToEnd" @scroll="scroll" ref="scroll" :listenScroll="listenScroll" :pullup="pullup" class="scroll" :data="banners">
+    <scroll @scroll="scroll" ref="scroll" :listenScroll="listenScroll" :pullup="pullup" class="scroll" :data="banners">
       <div>
 
         <div class="swiper-box" v-if="banners.length">
@@ -29,13 +29,13 @@
         </div>
         <div v-if="imgSrc.length>0" class="shop_datail_img">
           <h3>商品详情</h3>
-          <img @load="loadImage" v-for="item in imgSrc" :src="item">
+          <img @load="loadImage1" v-for="item in imgSrc" :src="item">
         </div>
       </div>
     </scroll>
       <router-link ref="shopping" to="/shopping" class="shopping" :class="{on:isShowShopping}">
           <i class="iconfont icon-gouwuche"></i>
-          <span v-if="shopCartNum>0">{{shopCartNum}}</span>
+          <span v-if="shopCartNum>0">{{getShopnum}}</span>
       </router-link>
       <div class="footer fbox">
           <div @touchstart.stop="isDialog=true" class="add-shop">加入购物车</div>
@@ -55,18 +55,14 @@
           <div class="botbox">
             <div class="num">
               <span>数&emsp;&emsp;量</span>
-              <div class="numbtns" @touchstart.stop>
-                <div @touchstart="delNum()" class="iconfont icon-jianhao"></div>
-                <input @change="checkNum()" ref="inp" v-model.number="shopsnum" type="text">
-                <div @touchstart="addNum()" class="iconfont icon-jiahao1"></div>
-              </div>
+              <btnnum @change="getnum" :id="detailShop.id"></btnnum>
             </div>
             <div class="boxcolor">
               礼盒颜色 
               <span :class="{on:isColor}" @touchstart="isColor = true">黑色</span>
               <span :class="{on:!isColor}" @touchstart="isColor = false">红色</span>
             </div>
-            <div class="btn-sub" @touchstart.stop="addShop()">确定</div>
+            <div class="btn-sub" @touchstart.stop="_addShop()">确定</div>
           </div>
         </div>
       </div>
@@ -79,7 +75,10 @@ import Swiper from 'base/swiper/swiper'
 import {mapGetters,mapActions} from 'vuex'
 import * as Config from 'api/config.js'
 import Scroll from 'base/scroll/scroll'
+import {standard} from 'common/js/mixin'
+import {addShop} from 'api/standard'
 export default {
+  mixins:[standard],
   data () {
     return {
       banners:[],
@@ -87,7 +86,6 @@ export default {
       listenScroll:true,
       pullup:true,
       isShowShopping:false,
-      shopsnum:1,
       shops:{},
       isColor:true,
       isDialog:false
@@ -104,26 +102,16 @@ export default {
       this._init()
     }
   },
-  mounted(){
-    this.$nextTick(()=>{
-      // this.shops = this.detailShop
-      console.log(this.shops)
-    })
-  },
   methods:{
     back(){
       this.$router.back()
     },
     scroll(pos){
-      console.log(pos)
       this.isShowShopping = true;
       clearTimeout(this.timer);
       this.timer = setTimeout(()=>{
         this.isShowShopping = false;
       },1500)
-    },
-    scrollToEnd(){
-      console.log("end")
     },
     _init(){
       let arrBanner = []
@@ -138,37 +126,39 @@ export default {
       this.imgSrc = arrDetailImg
       this.shops = this.detailShop
     },
-    loadImage(){
-        this.checkloaded = true
-        this.$refs.scroll.refresh()
+    loadImage1(){
+      this.checkloaded = true
+      this.$refs.scroll.refresh()
     },
-    addNum(){
-      this.shopsnum += 1;
-    },
-    delNum(){
-      this.shopsnum -= 1;
-      if(this.shopsnum<1){
-        this.shopsnum = 1;
+    _addShop(){
+      if(!this.isCanSub) return
+      let data = {
+        id:this.detailShop.id,
+        boxid:this.isColor ? Config.BLACKBOX : Config.REDBOX,
+        num:this.nums[this.detailShop.id] ? this.nums[this.detailShop.id] : 1
       }
+      this.isCanSub = false
+      addShop(data).then((res)=>{
+        this.isCanSub = true
+        if(res.success){
+        this.setShopCartNum(data.num)
+        this.isDialog = false
+        }
+      })
     },
-    checkNum(){
-      if(this.shopsnum<1){
-        this.shopsnum = 1
-      }
-    },
-    addShop(){
-      this.setShopCartNum(this.shopsnum)
-      this.isDialog = false
-    },
-    ...mapActions([
-        'setShopCartNum'
-    ])
   },
   computed:{
     ...mapGetters([
       'detailShop',
       'shopCartNum'
-    ])
+    ]),
+    getShopnum(){
+      if(this.shopCartNum > 99){
+        return '99+'
+      }else{
+        return this.shopCartNum
+      }
+    }
   }
 }
 </script>

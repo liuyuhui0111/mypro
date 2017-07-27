@@ -24,11 +24,7 @@
             </div>
             <div class="num">
               <span class="cr_c">数量</span>
-              <div class="numbtns" @touchstart.stop>
-                <div @touchstart="delNum(item)" class="iconfont icon-jianhao"></div>
-                <input @focus="curInpIndex=index" @change="checkNum(item)" ref="inp" v-model.number="item.num" type="text">
-                <div @touchstart="addNum(item)" class="iconfont icon-jiahao1"></div>
-              </div>
+              <btnnum :ref="item.id" :id="item.id" @change="getnum"></btnnum>
             </div>
             <div class="price">
               <span class="cr_r">￥{{item.price}}/瓶</span>
@@ -36,7 +32,7 @@
             </div>
             <div v-if="item.boxcolor.length>0" class="box-color">
               <span class="cr_c">礼盒颜色</span>
-              <div @touchstart.stop="item.curbox=item.curbox==='0' ? '1' : '0'" class="btn-color" :class="{on:item.curbox === '0'}">
+              <div @touchstart.stop="colorChange(item)" class="btn-color" :class="{on:item.curbox === '0'}">
                 <span class="circle"></span>
               </div>
               <span @click.stop="showBox(item)" class="iconfont icon-wenhao"></span>
@@ -61,18 +57,17 @@
 import Tab from 'components/tab/tab'
 import Swiper from 'base/swiper/swiper'
 import Loading from 'base/loading/loading'
-import {getSwiperData,getShopList,addShop} from 'api/standard'
+import {getSwiperData,addShop,getShopList} from 'api/standard'
 import Scroll from 'base/scroll/scroll'
 import {mapMutations,mapActions} from 'vuex'
+import {standard} from 'common/js/mixin'
 export default {
+  mixins: [standard],
   data () {
     return {
-      title: '标准产品',
-      isback:false,
       swipers:[],
       shops:[],
-      curInpIndex:0,
-      isCanSub:true
+      curInpIndex:0
     }
   },
   components:{
@@ -81,7 +76,6 @@ export default {
     Tab,
     Loading
   },
-  
   created(){
     this._getSwiper()
     this._getShopList()
@@ -101,16 +95,8 @@ export default {
         console.log(err)
       })
     },
-    checkNum(item){
-      if(item.num<1){
-        item.num = 1
-      }
-    },
-    loadImage(){
-       if (!this.checkloaded) {
-          this.checkloaded = true
-          this.$refs.scroll.refresh()
-        }
+    colorChange(item){
+      item.curbox = item.curbox==='0' ? '1' : '0'
     },
     showDetail(item){
       this.$router.push({
@@ -124,28 +110,18 @@ export default {
       })
       this.setColorbox(item.boxcolor)
     },
-    addNum(item){
-      item.num += 1;
-    },
-    delNum(item){
-      item.num -= 1;
-      if(item.num<1){
-        item.num = 1;
-      }
-    },
     _addShop(item){
       if(!this.isCanSub) return
       let data = {
         id:item.id,
         boxid:item.curbox,
-        num:item.num
+        num:this.nums[item.id] ? this.nums[item.id] : 1
       }
       this.isCanSub = false
       addShop(data).then((res)=>{
         this.isCanSub = true
         if(res.success){
-          console.log(data.num)
-          this.setShopCartNum(data.num)
+        this.setShopCartNum(data.num)
         }
       })
     },
@@ -156,17 +132,12 @@ export default {
         boxid:item.curbox,
         num:item.num
       }
-      console.log(data)
-    },
-    blurInp(){
-      this.$refs.inp[this.curInpIndex].blur()
     },
     ...mapMutations({
         setColorbox: 'SET_COLORBOX'
     }),
     ...mapActions([
-        'setShopCartNum',
-        'setDetailShop',
+        'setDetailShop'
     ])
   }
 }
@@ -307,39 +278,7 @@ export default {
   .cr_c{
     color: #888;
   }
-  .numbtns{
-    width: 2rem;
-    height: 0.4rem;
-    margin-left: 0.3rem;
-    line-height: 0.4rem;
-    text-align: center;
-    border: 0.01rem solid #ccc;
-    position: relative;
-    display: block;
-    box-sizing:border-box;
-    padding: 0 0.4rem;
-  }
-  .numbtns input{
-    font-size: 0.2rem;
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-  }
-  .numbtns .icon-jianhao{
-    border-right: 0.01rem solid #ccc;
-    width: 0.4rem;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-  .numbtns .icon-jiahao1{
-    border-left: 0.01rem solid #ccc;
-    width: 0.4rem;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
+  
   .icon-wenhao{
     font-size: 0.3rem;
   }
