@@ -1,0 +1,172 @@
+{
+    "success": true,
+    "data": [
+                {
+                   "address":null,
+                   "shoplist":[
+                           {
+                            "id": "sp000001",
+                            "href": "javascript:",
+                            "src": "static/res/1.jpg",
+                            "name":"武陵酒509ml",
+                            "vol":"53",
+                            "num":1,
+                            "cells":100,
+                            "curbox":"1",
+                            "boxcolor":[
+                                {
+                                    "box-id":"0",
+                                    "src":"static/res/2.png",
+                                    "name":"红盒子"
+                                },
+                                {
+                                    "box-id":"1",
+                                    "src":"static/res/2.png",
+                                    "name":"黑盒子"
+                                }
+                            ],
+                            "price":"379.00",
+                            "fhmes":"发货地：武陵酒厂，3-7个工作日送达",
+                            "shopType":"标准款"
+                        },
+                        {
+                            "id": "sp000002",
+                            "href": "javascript:",
+                            "src": "static/res/1.jpg",
+                            "name":"武陵酒509ml",
+                            "vol":"53",
+                            "num":1,
+                            "cells":100,
+                            "curbox":"1",
+                            "boxcolor":[
+                                {
+                                    "box-id":"0",
+                                    "src":"static/res/2.png",
+                                    "name":"红盒子"
+                                },
+                                {
+                                    "box-id":"1",
+                                    "src":"static/res/2.png",
+                                    "name":"黑盒子"
+                                }
+                            ],
+                            "price":"379.00",
+                            "fhmes":"发货地：武陵酒厂，3-7个工作日送达",
+                            "shopType":"标准款"
+                        },
+                        {
+                            "id": "sp000003",
+                            "href": "javascript:",
+                            "src": "static/res/1.jpg",
+                            "name":"武陵酒509ml",
+                            "vol":"53",
+                            "num":1,
+                            "cells":100,
+                            "curbox":"1",
+                            "boxcolor":[
+                                {
+                                    "box-id":"0",
+                                    "src":"static/res/2.png",
+                                    "name":"红盒子"
+                                },
+                                {
+                                    "box-id":"1",
+                                    "src":"static/res/2.png",
+                                    "name":"黑盒子"
+                                }
+                            ],
+                            "price":"379.00",
+                            "fhmes":"发货地：武陵酒厂，3-7个工作日送达",
+                            "shopType":"标准款"
+                        }
+                   ]
+                },
+                {
+                   "address":{
+                        "adsid":"ads0001",
+                        "mes":"北京市海淀区学院路5号768产业创意园B座7门2楼"
+                   } ,
+                   "shoplist":[
+                           {
+                            "id": "sp000001",
+                            "href": "javascript:",
+                            "src": "static/res/1.jpg",
+                            "name":"武陵酒509ml",
+                            "vol":"53",
+                            "num":1,
+                            "cells":100,
+                            "curbox":"1",
+                            "boxcolor":[
+                                {
+                                    "box-id":"0",
+                                    "src":"static/res/2.png",
+                                    "name":"红盒子"
+                                },
+                                {
+                                    "box-id":"1",
+                                    "src":"static/res/2.png",
+                                    "name":"黑盒子"
+                                }
+                            ],
+                            "price":"379.00",
+                            "fhmes":"发货地：武陵酒厂，3-7个工作日送达",
+                            "shopType":"定制款",
+                            "product":{
+                                "proTitle":"落款",
+                                "proText":"定制内容定制内容定制内容定制内容"
+                            }
+                        },
+                        {
+                            "id": "sp000002",
+                            "href": "javascript:",
+                            "src": "static/res/1.jpg",
+                            "name":"武陵酒509ml",
+                            "vol":"53",
+                            "num":1,
+                            "cells":100,
+                            "curbox":"1",
+                            "boxcolor":[
+                                {
+                                    "box-id":"0",
+                                    "src":"static/res/2.png",
+                                    "name":"红盒子"
+                                },
+                                {
+                                    "box-id":"1",
+                                    "src":"static/res/2.png",
+                                    "name":"黑盒子"
+                                }
+                            ],
+                            "price":"379.00",
+                            "fhmes":"发货地：武陵酒厂，3-7个工作日送达",
+                            "shopType":"标准款"
+                        },
+                        {
+                            "id": "sp000003",
+                            "href": "javascript:",
+                            "src": "static/res/1.jpg",
+                            "name":"武陵酒509ml",
+                            "vol":"53",
+                            "num":1,
+                            "cells":100,
+                            "curbox":"1",
+                            "boxcolor":[
+                                {
+                                    "box-id":"0",
+                                    "src":"static/res/2.png",
+                                    "name":"红盒子"
+                                },
+                                {
+                                    "box-id":"1",
+                                    "src":"static/res/2.png",
+                                    "name":"黑盒子"
+                                }
+                            ],
+                            "price":"379.00",
+                            "fhmes":"发货地：武陵酒厂，3-7个工作日送达",
+                            "shopType":"标准款"
+                        }
+                   ]
+                }
+            ]
+}

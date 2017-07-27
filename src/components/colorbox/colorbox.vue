@@ -17,7 +17,9 @@
 <script>
 import Scroll from 'base/scroll/scroll'
 import {mapGetters} from 'vuex'
+import {comonfn} from 'common/js/mixin'
 export default {
+  mixins:[comonfn],
   data(){
     return {
       imgs:[]
@@ -39,9 +41,6 @@ export default {
     })
   },
   methods:{
-    back(){
-      this.$router.back()
-    },
     selectBox(){
       this.$router.back()
     },
@@ -87,20 +86,6 @@ export default {
 }
 .imgbox img:nth-last-child(1){
   margin-bottom: 0;
-}
-.back{
-  position: absolute;
-  left: 0;
-  top: -0.5rem;
-  color: #fff;
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
-  display: block;
-  width: 0.5rem;
-  text-align: center;
-  font-size: 0.3rem;
 }
 
 </style>

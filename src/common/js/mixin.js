@@ -32,3 +32,11 @@ export const standard = {
 	}
 
 }
+
+export const comonfn = {
+	methods:{
+		back(){
+      		this.$router.back()
+    	}
+	}
+}

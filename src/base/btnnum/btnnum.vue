@@ -29,7 +29,7 @@
 				type:Number,
 				default:Number.MAX_VALUE
 			},
-			id:{
+			dataId:{
 				type:String,
 				default:""
 			}
@@ -47,7 +47,7 @@
 				}else if(this.num>this.max){
 					this.num = this.max
 				}
-				this.$emit('change',this.num,this.id)
+				this.$emit('change',this.num,this.dataId)
 			}
 		},
 		watch:{

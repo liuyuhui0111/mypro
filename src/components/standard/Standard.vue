@@ -24,7 +24,7 @@
             </div>
             <div class="num">
               <span class="cr_c">数量</span>
-              <btnnum :ref="item.id" :id="item.id" @change="getnum"></btnnum>
+              <btnnum :ref="item.id" :dataId="item.id" @change="getnum"></btnnum>
             </div>
             <div class="price">
               <span class="cr_r">￥{{item.price}}/瓶</span>

@@ -55,7 +55,7 @@
           <div class="botbox">
             <div class="num">
               <span>数&emsp;&emsp;量</span>
-              <btnnum @change="getnum" :id="detailShop.id"></btnnum>
+              <btnnum @change="getnum" :dataId="detailShop.id"></btnnum>
             </div>
             <div class="boxcolor">
               礼盒颜色 
@@ -75,10 +75,10 @@ import Swiper from 'base/swiper/swiper'
 import {mapGetters,mapActions} from 'vuex'
 import * as Config from 'api/config.js'
 import Scroll from 'base/scroll/scroll'
-import {standard} from 'common/js/mixin'
+import {standard,comonfn} from 'common/js/mixin'
 import {addShop} from 'api/standard'
 export default {
-  mixins:[standard],
+  mixins:[standard,comonfn],
   data () {
     return {
       banners:[],
@@ -103,9 +103,7 @@ export default {
     }
   },
   methods:{
-    back(){
-      this.$router.back()
-    },
+    
     scroll(pos){
       this.isShowShopping = true;
       clearTimeout(this.timer);
@@ -182,22 +180,7 @@ export default {
   width: 100%;
   overflow: hidden;
 }
-.back{
-  position: absolute;
-  left: 0;
-  top: -0.5rem;
-  color: #fff;
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
-  display: block;
-  width: 0.5rem;
-  height: 0.5rem;
-  line-height: 0.5rem;
-  text-align: center;
-  font-size: 0.3rem;
-}
+
 .swiper-box{
     width: 100%;
     min-height: 1px;
