@@ -19,6 +19,7 @@ export const standard = {
     	},
     	getnum(n,id){
         	this.nums[id] = n
+        	console.log(this.nums)
     	},
 		loadImage(){
 	       	if (!this.checkloaded) {

@@ -98,3 +98,7 @@ body{
     overflow: hidden;
     white-space: nowrap;
 }
+
+.cr_r{
+	color: #e83c3a;
+}

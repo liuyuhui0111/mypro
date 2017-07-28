@@ -2,15 +2,18 @@
     "success": true,
     "data": [
                 {
+                    "lineid":"lid0001",
                    "address":null,
                    "shoplist":[
                            {
+                            "scartid":"sc0001",
                             "id": "sp000001",
                             "href": "javascript:",
                             "src": "static/res/1.jpg",
                             "name":"武陵酒509ml",
                             "vol":"53",
-                            "num":1,
+                            "ischk":true,
+                            "num":41,
                             "cells":100,
                             "curbox":"1",
                             "boxcolor":[
@@ -30,12 +33,14 @@
                             "shopType":"标准款"
                         },
                         {
+                            "scartid":"sc0002",
                             "id": "sp000002",
                             "href": "javascript:",
                             "src": "static/res/1.jpg",
                             "name":"武陵酒509ml",
+                            "ischk":true,
                             "vol":"53",
-                            "num":1,
+                            "num":21,
                             "cells":100,
                             "curbox":"1",
                             "boxcolor":[
@@ -55,12 +60,14 @@
                             "shopType":"标准款"
                         },
                         {
+                            "scartid":"sc0003",
                             "id": "sp000003",
                             "href": "javascript:",
                             "src": "static/res/1.jpg",
                             "name":"武陵酒509ml",
+                            "ischk":true,
                             "vol":"53",
-                            "num":1,
+                            "num":111,
                             "cells":100,
                             "curbox":"1",
                             "boxcolor":[
@@ -82,18 +89,21 @@
                    ]
                 },
                 {
+                    "lineid":"lid0002",
                    "address":{
                         "adsid":"ads0001",
                         "mes":"北京市海淀区学院路5号768产业创意园B座7门2楼"
                    } ,
                    "shoplist":[
                            {
+                            "scartid":"sc0004",
                             "id": "sp000001",
                             "href": "javascript:",
                             "src": "static/res/1.jpg",
                             "name":"武陵酒509ml",
+                            "ischk":true,
                             "vol":"53",
-                            "num":1,
+                            "num":10,
                             "cells":100,
                             "curbox":"1",
                             "boxcolor":[
@@ -117,10 +127,12 @@
                             }
                         },
                         {
+                            "scartid":"sc0005",
                             "id": "sp000002",
                             "href": "javascript:",
                             "src": "static/res/1.jpg",
                             "name":"武陵酒509ml",
+                            "ischk":true,
                             "vol":"53",
                             "num":1,
                             "cells":100,
@@ -142,10 +154,12 @@
                             "shopType":"标准款"
                         },
                         {
+                            "scartid":"sc0006",
                             "id": "sp000003",
                             "href": "javascript:",
                             "src": "static/res/1.jpg",
                             "name":"武陵酒509ml",
+                            "ischk":true,
                             "vol":"53",
                             "num":1,
                             "cells":100,
