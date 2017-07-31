@@ -24,7 +24,11 @@
             </div>
             <div class="num">
               <span class="cr_c">数量</span>
-              <btnnum :ref="item.id" :dataId="item.id" @change="getnum"></btnnum>
+              <div class="numbtns">
+                <div @touchstart="del(item)" class="iconfont icon-jianhao"></div>
+                <input @change="checkNum(item)" v-model.number="item.num" type="text">
+                <div @touchstart="add(item)" class="iconfont icon-jiahao1"></div>
+              </div>
             </div>
             <div class="price">
               <span class="cr_r">￥{{item.price}}/瓶</span>
@@ -60,14 +64,15 @@ import Loading from 'base/loading/loading'
 import {getSwiperData,addShop,getShopList} from 'api/standard'
 import Scroll from 'base/scroll/scroll'
 import {mapMutations,mapActions} from 'vuex'
-import {standard} from 'common/js/mixin'
 export default {
-  mixins: [standard],
   data () {
     return {
       swipers:[],
       shops:[],
-      curInpIndex:0
+      curInpIndex:0,
+      min:1,
+      isCanSub:true,
+      max:Number.MAX_VALUE
     }
   },
   components:{
@@ -95,6 +100,18 @@ export default {
         console.log(err)
       })
     },
+    blurInp(){
+        let inp = this.$el.querySelectorAll("input")
+        for (var i = 0; i < inp.length; i++) {
+          inp[i].blur()
+        }
+    },
+    loadImage(){
+        if (!this.checkloaded) {
+          this.checkloaded = true
+          this.$refs.scroll.refresh()
+        }
+    },
     colorChange(item){
       item.curbox = item.curbox==='0' ? '1' : '0'
     },
@@ -115,8 +132,9 @@ export default {
       let data = {
         id:item.id,
         boxid:item.curbox,
-        num:this.nums[item.id] ? this.nums[item.id] : 1
+        num:item.num
       }
+      console.log(data.num)
       this.isCanSub = false
       addShop(data).then((res)=>{
         this.isCanSub = true
@@ -133,11 +151,28 @@ export default {
         num:item.num
       }
     },
+    del(item){
+      item.num -= 1
+      this.checkNum(item)
+    },
+    checkNum(item){
+      if(item.num<this.min){
+        item.num = this.min
+      }
+      if(item.num>this.max){
+        item.num = this.max
+      }
+    },
+    add(item){
+      item.num += 1
+      this.checkNum(item)
+    },
     ...mapMutations({
         setColorbox: 'SET_COLORBOX'
     }),
     ...mapActions([
-        'setDetailShop'
+        'setDetailShop',
+        'setShopCartNum'
     ])
   }
 }

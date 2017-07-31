@@ -55,7 +55,11 @@
           <div class="botbox">
             <div class="num">
               <span>数&emsp;&emsp;量</span>
-              <btnnum @change="getnum" :dataId="detailShop.id"></btnnum>
+              <div class="numbtns">
+                <div @touchstart="del()" class="iconfont icon-jianhao"></div>
+                <input @change="checkNum()" v-model.number="num" type="text">
+                <div @touchstart="add()" class="iconfont icon-jiahao1"></div>
+              </div>
             </div>
             <div class="boxcolor">
               礼盒颜色 
@@ -75,10 +79,10 @@ import Swiper from 'base/swiper/swiper'
 import {mapGetters,mapActions} from 'vuex'
 import * as Config from 'api/config.js'
 import Scroll from 'base/scroll/scroll'
-import {standard,comonfn} from 'common/js/mixin'
+import {comonfn} from 'common/js/mixin'
 import {addShop} from 'api/standard'
 export default {
-  mixins:[standard,comonfn],
+  mixins:[comonfn],
   data () {
     return {
       banners:[],
@@ -88,7 +92,10 @@ export default {
       isShowShopping:false,
       shops:{},
       isColor:true,
-      isDialog:false
+      isDialog:false,
+      num:1,
+      min:1,
+      max:Number.MAX_VALUE
     }
   },
   components:{
@@ -128,12 +135,32 @@ export default {
       this.checkloaded = true
       this.$refs.scroll.refresh()
     },
+    loadImage(){
+      this.checkloaded = true
+      this.$refs.scroll.refresh()
+    },
+    del(){
+      this.num -= 1
+      this.checkNum()
+    },
+    add(){
+      this.num += 1
+      this.checkNum()
+    },
+    checkNum(){
+      if(this.num>this.max){
+        this.num = this.max
+      }
+      if(this.num<this.min){
+        this.num = this.min
+      }
+    },
     _addShop(){
       if(!this.isCanSub) return
       let data = {
         id:this.detailShop.id,
         boxid:this.isColor ? Config.BLACKBOX : Config.REDBOX,
-        num:this.nums[this.detailShop.id] ? this.nums[this.detailShop.id] : 1
+        num:this.num
       }
       this.isCanSub = false
       addShop(data).then((res)=>{

@@ -1,12 +1,12 @@
 <template>
-  <div class="shopping">
+  <div class="shopping" @touchstart="blurInp">
   <i @click='back' class="iconfont icon-xiangyou1 back
 "></i>
   	<tab></tab>
 	<div class="shoplist" v-if="shoplists.length>0">
 		<div class="topbtns">
 			<span class="editads">编辑地址</span>
-			<span class="del">删除</span>
+			<span class="del" @touchstart="delshow = true">删除</span>
 		</div>
 		<scroll :data="shoplists" class="scroll" ref="scroll">
 		<div>
@@ -35,7 +35,11 @@
 		            	</div>
 		            	<div class="price fbox">
 		            		<span class="cr_r">&yen;{{shop.price}}</span>
-		            		<btnnum @change="getnum" :val="shop.num" :dataId="shop.scartid"></btnnum>	
+		            		<div class="numbtns">
+			                <div @touchstart="del(shop)" class="iconfont icon-jianhao"></div>
+			                <input @change="checkNum(shop)" v-model.number="shop.num" type="text">
+			                <div @touchstart="add(shop)" class="iconfont icon-jiahao1"></div>
+			              </div>	
 		            	</div>
 		            </div>
 				</div>
@@ -45,15 +49,15 @@
 		</scroll>
 		<div class="footbtns fbox">
 			<div class="lfbox fbox">
-			<span class="chkall"><i class="iconfont icon-yuanxingweixuanzhong"></i>
+			<span @touchstart="ischkAll=!ischkAll" class="chkall"><i class="iconfont" :class="[{'icon-yuanxingxuanzhong' : ischkAll},{'icon-yuanxingweixuanzhong' : !ischkAll}]"></i>
 			全选</span>
 			<div class="gobuyNum">
-				合计:&yen;0 <br>
-				共:0瓶	
+				合计:&yen;{{isAllPrice}} <br>
+				共:{{isAllNum}}瓶	
 			</div>
 			</div>
 			<div class="gobuy">
-				去结算<span>(0)</span>
+				去结算<span>({{isAllNum}})</span>
 			</div>
 		</div>
 	</div>
@@ -64,23 +68,50 @@
 			去选选心仪的商品吧
 		</router-link>
 	</div>
+	<confirm @sub="delsub" @close="delclose" @cancel="delcancel" v-show="delshow">
+		<div class="delmes">确定要删除选中商品么?</div>
+	</confirm>
   </div>
 </template>
 
 <script>
 import Tab from 'components/tab/tab'
+import Confirm from 'base/confirm/confirm'
 import {getShopCartList} from 'api/shopcart'
-import {comonfn,standard} from 'common/js/mixin'
+import {mapMutations,mapActions} from 'vuex'
+import {comonfn} from 'common/js/mixin'
 import Scroll from 'base/scroll/scroll'
 export default {
-	mixins:[comonfn,standard],
+	mixins:[comonfn],
+	components:{
+		Tab,
+		Scroll,
+		Confirm
+	},
 	data(){
 		return {
-			shoplists:[]
+			shoplists:[],
+			ischkAll:true,
+			min:1,
+			max:Number.MAX_VALUE,
+			delshow:false
 		}
 	},
 	created(){
 		this._getShopCartList()
+	},
+	computed:{
+		isAllNum(){
+			return this.getAllNum()
+		},
+		isAllPrice(){
+			return this.getAllPrice()
+		}
+	},
+	watch:{
+		ischkAll() {
+			this._chkall()
+		}
 	},
 	methods:{
 		_getShopCartList(){
@@ -89,17 +120,89 @@ export default {
 				console.log(this.shoplists)
 			})
 		},
-		ischkd(id){
-			console.log(id)
-			return false
-		}
-	},
-	components:{
-		Tab,
-		Scroll
-	},
-	computed:{
-		
+		del(item){
+	      item.num -= 1
+	      this.checkNum(item)
+	    },
+	    checkNum(item){
+	      if(item.num<this.min){
+	        item.num = this.min
+	      }
+	      if(item.num>this.max){
+	        item.num = this.max
+	      }
+	      this._setShopCartNum()
+	    },
+	    add(item){
+	      item.num += 1
+	      this.checkNum(item)
+	    },
+	    _setShopCartNum(){
+	    	let shops = this.shoplists
+	    	let num = 0
+	    	for (let i = 0; i < shops.length; i++) {
+	    		let obj = shops[i].shoplist
+	    		for (let j = 0; j < obj.length; j++) {
+	    			num += obj[j].num
+	    		}
+	    	}
+	    	this.setShopNum(num)
+	    },
+	    delsub(){
+	    	console.log("sub")
+	    },
+	    delcancel(){
+	    	console.log("cancel")
+	    	this.delshow=false
+	    },
+	    delclose(){
+	    	console.log("close")
+	    	this.delshow=false
+	    },
+	    blurInp(){
+	        let inp = this.$el.querySelectorAll("input")
+	        for (var i = 0; i < inp.length; i++) {
+	          inp[i].blur()
+	        }
+    	},
+	    getAllNum(){
+	    	let shops = this.shoplists
+	    	let num = 0
+	    	for (let i = 0; i < shops.length; i++) {
+	    		let obj = shops[i].shoplist
+	    		for (let j = 0; j < obj.length; j++) {
+	    			if(obj[j].ischk){
+	    				num += obj[j].num
+	    			}
+	    		}
+	    	}
+	    	return num
+	    },
+	    _chkall(){
+	    	let shops = this.shoplists
+	    	for (var i = 0; i < shops.length; i++) {
+	    		let obj = shops[i].shoplist
+	    		for (let j = 0; j < obj.length; j++) {
+	    			obj[j].ischk = this.ischkAll
+	    		}
+	    	}
+	    },
+	    getAllPrice(){
+	    	let shops = this.shoplists
+	    	let price = 0
+	    	for (var i = 0; i < shops.length; i++) {
+	    		let obj = shops[i].shoplist
+	    		for (let j = 0; j < obj.length; j++) {
+	    			if(obj[j].ischk){
+	    				price += obj[j].num*obj[j].price
+	    			}
+	    		}
+	    	}
+	    	return price.toFixed(2)
+	    },
+	    ...mapMutations(
+	       { setShopNum:'SET_SHOPCARTNUM'}
+	    )
 	}
 }
 </script>
@@ -274,5 +377,11 @@ export default {
 	color: #fff;
 	text-align: center;
 	width: 1.6rem;
+}
+.delmes{
+	text-align: center;
+	width: 100%;
+	padding: 0.1rem;
+	box-sizing:border-box;
 }
 </style>

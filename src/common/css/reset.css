@@ -102,3 +102,36 @@ body{
 .cr_r{
 	color: #e83c3a;
 }
+.numbtns{
+    width: 2rem;
+    height: 0.4rem;
+    margin-left: 0.3rem;
+    line-height: 0.4rem;
+    text-align: center;
+    border: 0.01rem solid #ccc;
+    position: relative;
+    display: block;
+    box-sizing:border-box;
+    padding: 0 0.4rem;
+  }
+  .numbtns input{
+    font-size: 0.2rem;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+  .numbtns .icon-jianhao{
+    border-right: 0.01rem solid #ccc;
+    width: 0.4rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .numbtns .icon-jiahao1{
+    border-left: 0.01rem solid #ccc;
+    width: 0.4rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
