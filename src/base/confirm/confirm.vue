@@ -1,17 +1,16 @@
 <template>
-	<div class="confirm">
-		<div class="mark" v-if="ismark"></div>
-		<div class="cbox" v-show="isShow">
-			<div class="title">{{title}}
-			<i @touchstart.stop="close" class="iconfont icon-guanbi1"></i>
-			</div>
-			<slot>提示信息</slot>
-			<div class="btns fbox">
-				<span @touchstart.stop="cancel" class="cancel">取消</span>
-				<span @touchstart.stop="sub" class="sub">确定</span>
-			</div>
+<transition name="tra">
+	<div class="cbox">
+		<div class="title">{{title}}
+		<i @touchstart.stop="close" class="iconfont icon-guanbi1"></i>
+		</div>
+		<slot>提示信息</slot>
+		<div class="btns fbox">
+			<span @touchstart.stop="cancel" class="cancel">取消</span>
+			<span @touchstart.stop="sub" class="sub">确定</span>
 		</div>
 	</div>
+	</transition>	
 </template>
 
 <script>
@@ -30,11 +29,6 @@
 				default:"提示信息"
 			}
 		},
-		data(){
-			return {
-				isShow:true
-			}
-		},
 		methods:{
 			sub(){
 				this.$emit("sub")
@@ -50,21 +44,10 @@
 </script>
 
 <style scoped>
-	.mark,
-	.confirm{
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-	.mark{
-		background: rgba(0,0,0,0.3);
-	}
+
 	.cbox{
 		position: fixed;
 		width: 90%;
-		background: #fff;
 		display: block;
 		top: 50%;
 		left: 5%;
@@ -72,6 +55,8 @@
 		-ms-transform: translate3d(0,-50%,0);
 		-o-transform: translate3d(0,-50%,0);
 		transform: translate3d(0,-50%,0);
+		background: rgba(0,0,0,0.9);
+		color: #fff;
 	}
 	.title{
 		display: block;
@@ -106,4 +91,18 @@
 	.sub{
 		background: #e83c3a;
 	}
+	.tra-enter-active, .tra-leave-active {
+  transition: all 0.3s;
+  -webkit-transform: translate3d(0,-50%,0);
+		-ms-transform: translate3d(0,-50%,0);
+		-o-transform: translate3d(0,-50%,0);
+		transform: translate3d(0,-50%,0);
+}
+.tra-enter, .tra-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0;
+  -webkit-transform: translate3d(0,-150%,0);
+		-ms-transform: translate3d(0,-150%,0);
+		-o-transform: translate3d(0,-150%,0);
+		transform: translate3d(0,-150%,0);
+}
 </style>
