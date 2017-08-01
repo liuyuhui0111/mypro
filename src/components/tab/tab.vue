@@ -25,7 +25,7 @@ import {getShopCartNum} from 'api/shopcart'
 import {mapMutations,mapGetters} from 'vuex'
 export default {
  	created(){
- 		if(this.shopCartNum === -1){
+ 		if(this.shopCartNum === 0){
  			this._getShopCartNum()
  		}
  	},

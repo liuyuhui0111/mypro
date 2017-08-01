@@ -1,7 +1,7 @@
 import {getLocalDetailShop} from 'common/js/cache.js'
 const state = {
   colorbox:[],
-  shopCartNum:-1,
+  shopCartNum:0,
   detailShop:getLocalDetailShop()
 }
 

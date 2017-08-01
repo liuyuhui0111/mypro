@@ -1,6 +1,5 @@
 <template>
-  <div class="standard" @touchstart="blurInp">
-
+  <div class="standard" @touchstart="blurInp">    
     <scroll ref="scroll" class="scroll" :data="shops">
       <div>
       <div class="swiper-box" v-if="swipers.length">

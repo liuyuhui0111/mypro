@@ -6,7 +6,7 @@
 	<div class="shoplist" v-if="shoplists.length>0">
 		<div class="topbtns">
 			<span class="editads">编辑地址</span>
-			<span class="del" @touchstart="delshow = true">删除</span>
+			<span class="del" @touchstart="delshowfn">删除</span>
 		</div>
 		<scroll :data="shoplists" class="scroll" ref="scroll">
 		<div>
@@ -56,7 +56,7 @@
 				共:{{isAllNum}}瓶	
 			</div>
 			</div>
-			<div class="gobuy">
+			<div @touchstart.stop="gobuy" class="gobuy">
 				去结算<span>({{isAllNum}})</span>
 			</div>
 		</div>
@@ -71,12 +71,18 @@
 	<confirm @sub="delsub" @close="delclose" @cancel="delcancel" v-show="delshow">
 		<div class="delmes">确定要删除选中商品么?</div>
 	</confirm>
+	<alert @sub="hidealert" @close="hidealert" v-show="isalert">
+		<div class="delmes">没有选中商品</div>
+	</alert>
+	<addressp></addressp>
   </div>
 </template>
 
 <script>
 import Tab from 'components/tab/tab'
+import Addressp from 'components/address/addressPage'
 import Confirm from 'base/confirm/confirm'
+import Alert from 'base/alert/alert'
 import {getShopCartList} from 'api/shopcart'
 import {mapMutations,mapActions} from 'vuex'
 import {comonfn} from 'common/js/mixin'
@@ -86,7 +92,9 @@ export default {
 	components:{
 		Tab,
 		Scroll,
-		Confirm
+		Confirm,
+		Alert,
+		Addressp
 	},
 	data(){
 		return {
@@ -94,7 +102,9 @@ export default {
 			ischkAll:true,
 			min:1,
 			max:Number.MAX_VALUE,
-			delshow:false
+			delshow:false,
+			isalert:false,
+			gobuynum:0
 		}
 	},
 	created(){
@@ -117,8 +127,17 @@ export default {
 		_getShopCartList(){
 			getShopCartList().then((res)=>{
 				this.shoplists = res.data
+				this._setShopCartNum()
 				console.log(this.shoplists)
 			})
+		},
+		delshowfn(){
+			if(this.isAllNum>0){
+				this.delshow = true
+			}else{
+				this.isalert = true
+			}
+			console.log(this.delshow)
 		},
 		del(item){
 	      item.num -= 1
@@ -133,6 +152,13 @@ export default {
 	      }
 	      this._setShopCartNum()
 	    },
+	    gobuy(){
+	    	if(this.isAllNum<1){
+				this.isalert = true
+			}else{
+				console.log("去结算页面")
+			}
+	    },
 	    add(item){
 	      item.num += 1
 	      this.checkNum(item)
@@ -146,14 +172,37 @@ export default {
 	    			num += obj[j].num
 	    		}
 	    	}
+	    	console.log(num)
 	    	this.setShopNum(num)
 	    },
 	    delsub(){
-	    	console.log("sub")
+	    	
+	    	let shops = this.shoplists
+	    	let num = 0
+	    	for (let i = 0; i < shops.length; i++) {
+	    		let obj = shops[i].shoplist
+	    		for (let j = 0; j < obj.length; j++) {
+	    			if(obj[j].ischk){
+	    				obj.splice(j,1)
+	    				j -= 1
+	    			}
+	    		}
+	    		if(obj.length<1){
+	    			shops.splice(i,1)
+	    			i -= 1
+	    		}
+	    	}
+	    	this.shoplists = shops
+	    	this.$refs.scroll.refresh()
+	    	this._setShopCartNum()
+	    	this.delshow=false
 	    },
 	    delcancel(){
 	    	console.log("cancel")
 	    	this.delshow=false
+	    },
+	    hidealert(){
+	    	this.isalert=false
 	    },
 	    delclose(){
 	    	console.log("close")
@@ -176,6 +225,7 @@ export default {
 	    			}
 	    		}
 	    	}
+	    	this.gobuynum = num
 	    	return num
 	    },
 	    _chkall(){

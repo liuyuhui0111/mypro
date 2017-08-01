@@ -24,24 +24,39 @@ export default new Router({
         {
           name:'商品详情',
           path:':id',
-          component:StandardDetail
+          component:StandardDetail,
+          meta:{
+            keepAlive:true
+          }
         }
-      ]
+      ],
+      meta:{
+        keepAlive:true
+      }
     },
     {
       name:'私人定制',
       path: '/product',
-      component: Product
+      component: Product,
+      meta:{
+        keepAlive:true
+      }
     },
     {
       name:'购物车',
       path: '/shopping',
-      component: Shopping
+      component: Shopping,
+      meta:{
+        keepAlive:false
+      }
     },
     {
       name:'盒子预览',
       path:'/colorbox',
-      component:Colorbox
+      component:Colorbox,
+      meta:{
+        keepAlive:true
+      }
     },
     {
       name:'我的武陵',
@@ -51,9 +66,15 @@ export default new Router({
         {
           name:'客服',
           path:'custom',
-          component:Custom
+          component:Custom,
+          meta:{
+            keepAlive:true
+          }
         }
-      ]
+      ],
+      meta:{
+        keepAlive:true
+      }
     }
   ]
 })
