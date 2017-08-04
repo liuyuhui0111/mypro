@@ -5,10 +5,10 @@
   	<tab></tab>
 	<div class="shoplist" v-if="shoplists.length>0">
 		<div class="topbtns">
-			<span class="editads">编辑地址</span>
+			<router-link tag="span" to="/address" class="editads">编辑地址</router-link>
 			<span class="del" @touchstart="delshowfn">删除</span>
 		</div>
-		<scroll :data="shoplists" class="scroll" ref="scroll">
+		<scroll @scroll="getPagePos" :listenScroll="isScroll" :data="shoplists" class="scroll" ref="scroll">
 		<div>
 		<div v-for="item in shoplists" :ref="item.lineid" :data-id="item.lineid" class="item">
 			<div v-if="item.address" :data-id="item.address.adsid" class="address fbox">
@@ -74,17 +74,16 @@
 	<alert @sub="hidealert" @close="hidealert" v-show="isalert">
 		<div class="delmes">没有选中商品</div>
 	</alert>
-	<addressp></addressp>
+	<router-view></router-view>
   </div>
 </template>
 
 <script>
 import Tab from 'components/tab/tab'
-import Addressp from 'components/address/addressPage'
 import Confirm from 'base/confirm/confirm'
 import Alert from 'base/alert/alert'
 import {getShopCartList} from 'api/shopcart'
-import {mapMutations,mapActions} from 'vuex'
+import {mapMutations,mapActions,mapGetters} from 'vuex'
 import {comonfn} from 'common/js/mixin'
 import Scroll from 'base/scroll/scroll'
 export default {
@@ -93,8 +92,7 @@ export default {
 		Tab,
 		Scroll,
 		Confirm,
-		Alert,
-		Addressp
+		Alert
 	},
 	data(){
 		return {
@@ -104,13 +102,18 @@ export default {
 			max:Number.MAX_VALUE,
 			delshow:false,
 			isalert:false,
-			gobuynum:0
+			gobuynum:0,
+			isScroll:true,
+			pagey:0
 		}
 	},
 	created(){
 		this._getShopCartList()
 	},
 	computed:{
+		...mapGetters([
+	      'shopCartPageY'
+    	]),
 		isAllNum(){
 			return this.getAllNum()
 		},
@@ -121,14 +124,19 @@ export default {
 	watch:{
 		ischkAll() {
 			this._chkall()
-		}
+		},
+	    $route () {
+		    this._getShopCartList()
+			this.$refs.scroll.scrollTo(0,this.shopCartPageY,0)
+	    }
+	},
+	mounted(){
 	},
 	methods:{
 		_getShopCartList(){
 			getShopCartList().then((res)=>{
 				this.shoplists = res.data
 				this._setShopCartNum()
-				console.log(this.shoplists)
 			})
 		},
 		delshowfn(){
@@ -137,7 +145,10 @@ export default {
 			}else{
 				this.isalert = true
 			}
-			console.log(this.delshow)
+		},
+		getPagePos(pos){
+			this.pagey = pos.y
+			this.setShopPageY(this.pagey)
 		},
 		del(item){
 	      item.num -= 1
@@ -252,7 +263,11 @@ export default {
 	    },
 	    ...mapMutations(
 	       { setShopNum:'SET_SHOPCARTNUM'}
+	    ),
+	    ...mapMutations(
+	       { setShopPageY:'SET_SHOPCARTPAGEY'}
 	    )
+
 	}
 }
 </script>

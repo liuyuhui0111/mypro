@@ -135,3 +135,14 @@ body{
     right: 0;
     top: 0;
   }
+
+  /*公共按钮样式*/
+  .com_btn_sub{
+  display: block;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  width: 60%;
+  text-align: center;
+  color: #fff;
+  background: #e83c3a;
+}

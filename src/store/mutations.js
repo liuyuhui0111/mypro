@@ -9,6 +9,9 @@ const matutaions = {
   },
   [types.SET_DRTAILSHOP](state, item) {
     state.detailShop = item
+  },
+  [types.SET_SHOPCARTPAGEY](state, y) {
+    state.shopCartPageY = y
   }
 }
 

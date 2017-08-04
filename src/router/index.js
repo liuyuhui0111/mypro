@@ -6,6 +6,7 @@ import Shopping from 'components/shopping/shopping'
 import My from 'components/my/my'
 import Custom from 'components/custom/custom'
 import StandardDetail from 'components/detail/standardDetail'
+import AddressPage from 'components/address/addressPage'
 import Colorbox from 'components/colorbox/colorbox'
 
 Vue.use(Router)
@@ -47,7 +48,7 @@ export default new Router({
       path: '/shopping',
       component: Shopping,
       meta:{
-        keepAlive:false
+        keepAlive:true
       }
     },
     {
@@ -56,6 +57,14 @@ export default new Router({
       component:Colorbox,
       meta:{
         keepAlive:true
+      }
+    },
+    {
+      name:'地址列表',
+      path:'/address',
+      component:AddressPage,
+      meta:{
+        keepAlive:false
       }
     },
     {
