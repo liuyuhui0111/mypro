@@ -4,6 +4,7 @@ input,textarea{
 	border: none;
 	outline: none;
 	font-size: 0.2rem;
+  resize: none;
 }
 a{
 	text-decoration: none;

@@ -7,6 +7,8 @@ import My from 'components/my/my'
 import Custom from 'components/custom/custom'
 import StandardDetail from 'components/detail/standardDetail'
 import AddressPage from 'components/address/addressPage'
+import AddAds from 'components/address/addAddress'
+import EditAds from 'components/address/editAddress'
 import Colorbox from 'components/colorbox/colorbox'
 
 Vue.use(Router)
@@ -63,6 +65,24 @@ export default new Router({
       name:'地址列表',
       path:'/address',
       component:AddressPage,
+      children:[
+        {
+          name:'编辑地址',
+          path:'editAddress',
+          component:EditAds,
+          meta:{
+            keepAlive:true
+          }
+        },
+        {
+          name:'添加地址',
+          path:'addAddress',
+          component:AddAds,
+          meta:{
+            keepAlive:true
+          }
+        }
+      ],
       meta:{
         keepAlive:false
       }

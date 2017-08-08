@@ -15,14 +15,16 @@
           <p>{{item.prov}}{{item.city}}{{item.area}}{{item.address}}</p>
         </div>
         <div class="btns fbox">
-          <span class="edit"><i class="iconfont icon-bianji"></i>编辑</span>
+          <span @touchstart.stop="edit(item)" class="edit"><i class="iconfont icon-bianji"></i>编辑</span>
           <span class="del"><i class="iconfont icon-shanchu"></i>删除</span>
         </div>
       </li>
     </ul>
     </div>
   </scroll>
-  <span class="com_btn_sub addAds">添加新地址</span>
+  <span @touchstart.stop="addAds" class="com_btn_sub addAds">添加新地址</span>
+
+  <router-view></router-view>
   </div>
 </template>
 
@@ -32,29 +34,25 @@ import {getAddress,editAddress,addAddress} from 'api/address'
 import {comonfn} from 'common/js/mixin'
 export default {
   beforeRouteEnter (to, from, next) {
-    console.log("beforeenter")
-    console.log(from)
     next()
   },
   beforeRouteUpdate (to, from, next) {
-    console.log("beforeupdate",to)
-    console.log(from)
-    next(this.isgo)
+    next()
   },
   beforeRouteLeave (to, from, next) {
-   console.log("beforeleave",to)
-    console.log(from)
     getAddress().then((res)=>{
-        console.log(res)
         this.addresslist = res.data
-        next(res.success)
+        next()
       })
   },
   mixins:[comonfn],
   data(){
     return {
       addresslist:[],
-      isgo:false
+      isgo:true,
+      isshowEdit:false,
+      adsitem:{},
+      adstitle:"添加地址"
     }
   },
   created(){  
@@ -73,9 +71,19 @@ export default {
   methods:{
     _getAddress(){
       getAddress().then((res)=>{
-        console.log(res)
         this.addresslist = res.data
       })
+    },
+    addAds(){
+      this.$router.push({
+        path:'/address/addAddress'  
+      })
+    },
+    edit(item){
+      this.$router.push({
+        path:`/address/editAddress?id=${item.id}`  
+      })
+      console.log(item)
     }
   }
 }
